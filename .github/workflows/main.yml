@@ -2,9 +2,8 @@ name: Daily Script Runner
 
 on:
   schedule:
-    # - cron: '30 16,23 * * *'  # UTC 时间 16:30 和 23:30（北京时间 0:30 和 7:30）
-    # 如果需要北京时间 0:30 和 11:30，请使用下面的配置（UTC 时间 16:30 和 3:30）
-    - cron: '30 16,3 * * *'
+    - cron: '30 16,23 * * *'  # UTC 时间 16:30 和 23:30（北京时间 0:30 和 7:30）
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   run-script:
@@ -20,9 +19,9 @@ jobs:
           node-version: 18
 
       - name: Install dependencies
-        run: npm install  # 如果脚本有依赖
+        run: npm install
 
       - name: Run BlackBoxSign.js
         run: node BlackBoxSign.js
         env:
-          BLACKBOX_COOKIE: ${{ secrets.BLACKBOX_COOKIE }}  # 从 GitHub 机密获取 cookie    
+          BLACKBOX_COOKIE: ${{ secrets.BLACKBOX_COOKIE }}    
