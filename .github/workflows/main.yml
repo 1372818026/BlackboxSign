@@ -2,8 +2,8 @@ name: Daily Script Runner
 
 on:
   schedule:
-    - cron: '30 16,23 * * *'  # UTC 时间 16:30 和 23:30（北京时间 0:30 和 7:30）
-  workflow_dispatch:  # 允许手动触发
+    - cron: '30 16,23 * * *'
+  workflow_dispatch:
 
 jobs:
   run-script:
@@ -17,9 +17,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
-
-      - name: Install dependencies
-        run: npm install
 
       - name: Run BlackBoxSign.js
         run: node BlackBoxSign.js
