@@ -1,7 +1,7 @@
 {
-    "name": "blackbox-sign",
-    "version": "1.0.0",
-    "dependencies": {
-      "axios": "^1.5.0"  # 添加 axios 依赖
-    }
-  }    
+      "name": "blackbox-sign",
+      "version": "1.0.0",
+      "dependencies": {
+        "axios": "^1.5.0"
+      }
+    }    
