@@ -2,8 +2,8 @@ name: Daily Script Runner
 
 on:
   schedule:
-    - cron: '30 16,23 * * *'
-  workflow_dispatch:
+    - cron: '30 16,23 * * *'  # UTC 时间 16:30 和 23:30（北京时间 0:30 和 7:30）
+  workflow_dispatch:  # 允许手动触发
 
 jobs:
   run-script:
@@ -17,6 +17,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 18
+
+      - name: Cache node modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm ci  # 使用更可靠的锁定版本安装
 
       - name: Run BlackBoxSign.js
         run: node BlackBoxSign.js
